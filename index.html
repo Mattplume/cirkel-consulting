@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cirkel Consulting – Conseil SAP & Finance</title>
+    <meta
+      name="description"
+      content="Cirkel Consulting, expert SAP S/4HANA Finance, accompagne la transformation digitale et l’optimisation des processus financiers."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <style>
+      :root {
+        --primary: #2196f3;
+        --primary-dark: #1769aa;
+        --primary-light: #6ec6ff;
+        --bg: #f7f9fb;
+        --text: #222;
+        --title-color: #282830;
+        --card-bg: #fff;
+        --card-shadow: 0 4px 24px rgba(33, 150, 243, 0.1);
+        --radius: 1.5rem;
+        --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Montserrat", Arial, sans-serif;
+        background: var(--bg);
+        color: #222;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        width: 100%;
+        background: #fff;
+        border-bottom: 1.5px solid #e3f2fd;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.7rem 2.5vw 0.7rem 2.5vw;
+        min-height: 70px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        transition: box-shadow 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+          border-bottom 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+          background 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      header.scrolled {
+        border-bottom: none;
+        box-shadow: 0 4px 18px -6px rgba(33, 150, 243, 0.1), 0 1.5px 0 0 #e3f2fd;
+        background: #fff;
+      }
+      .logo {
+        max-width: 160px;
+        width: 100%;
+        background: transparent;
+        margin: 0;
+      }
+      .header-title {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-left: 1.2rem;
+        flex: 1;
+      }
+      .cta-btn {
+        background: #fff;
+        color: var(--primary);
+        border: none;
+        border-radius: 2rem;
+        padding: 0.7em 1.7em;
+        font-size: 1.1rem;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1);
+        cursor: pointer;
+        transition: background var(--transition), color var(--transition),
+          box-shadow var(--transition);
+        margin-left: 1.5rem;
+      }
+      .cta-btn:hover {
+        background: var(--primary-dark);
+        color: #fff;
+        box-shadow: 0 6px 24px rgba(33, 150, 243, 0.18);
+      }
+      main {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 90px 1.5rem 2rem 1.5rem;
+        flex: 1;
+        width: 100%;
+      }
+      .intro {
+        background: var(--card-bg);
+        border-bottom-left-radius: var(--radius);
+        border-bottom-right-radius: var(--radius);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        box-shadow: var(--card-shadow);
+        padding: 2.5rem 2.5rem 2rem 2.5rem;
+        margin: 0 auto 2.5rem auto;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        max-width: 1280px;
+        width: 100%;
+      }
+      .intro strong {
+        color: var(--primary);
+      }
+      .intro::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 180px;
+        height: 180px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-light) 0%,
+          var(--primary) 100%
+        );
+        opacity: 0.1;
+        border-radius: 50%;
+        z-index: 0;
+      }
+      .intro-content {
+        position: relative;
+        z-index: 1;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 2.2rem;
+        margin-bottom: 2.5rem;
+      }
+      .card {
+        background: var(--card-bg);
+        border-radius: var(--radius);
+        box-shadow: var(--card-shadow);
+        padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: transform var(--transition), box-shadow var(--transition);
+        position: relative;
+        min-height: 260px;
+      }
+      .card-icon {
+        margin-bottom: 0.7em;
+        background: #f5f5f5;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        padding: 1.2em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card-icon svg {
+        width: 100%;
+        height: 100%;
+      }
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--title-color);
+        margin-bottom: 0.5em;
+      }
+      .card-desc {
+        font-size: 1.05rem;
+        color: #222;
+        margin-bottom: 0.5em;
+      }
+      .card-list,
+      .sectors-list {
+        margin: 0.5em 0 0 0;
+        padding-left: 0;
+        color: #222;
+        font-size: 1em;
+        list-style: none;
+      }
+      .sectors-list {
+        margin: 0.5em 0 0 0;
+        padding: 0;
+        color: #444;
+        font-size: 1em;
+        position: relative;
+        z-index: 1;
+        list-style: none;
+      }
+      .sectors-list li {
+        margin-bottom: 0.3em;
+      }
+      .sectors-block {
+        background: linear-gradient(135deg, #31a8ea 0%, #2663c0 100%);
+        color: #fff;
+        border-radius: var(--radius);
+        box-shadow: var(--card-shadow);
+        padding: 2.5rem 2.5rem 2rem 2.5rem;
+        margin: 0 auto 2.5rem auto;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        max-width: 1280px;
+        width: 100%;
+      }
+      .sectors-block::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 180px;
+        height: 180px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        z-index: 0;
+      }
+      .sectors-header {
+        position: relative;
+        z-index: 1;
+      }
+      .sectors-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 0.5em;
+        display: block;
+      }
+      .sectors-desc {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 0.5em;
+        position: relative;
+        z-index: 1;
+      }
+      .sectors-list {
+        margin: 0.5em 0 0 0;
+        padding: 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1em;
+        position: relative;
+        z-index: 1;
+        list-style: none;
+      }
+      .contact {
+        margin: 3rem 0 1.5rem 0;
+        text-align: center;
+      }
+      .contact a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        margin: 0 0.7em;
+        transition: color var(--transition);
+      }
+      .contact a:hover {
+        color: var(--primary-light);
+      }
+      .footer {
+        background: #fff;
+        color: #888;
+        text-align: center;
+        padding: 1.2rem 0 1.2rem 0;
+        font-size: 0.98rem;
+        border-top: 1px solid #e3f2fd;
+        margin-top: auto;
+      }
+      @media (max-width: 800px) {
+        .intro,
+        .sectors-block {
+          padding: 1.2rem 0.7rem 1rem 0.7rem;
+        }
+        .cards {
+          gap: 1.2rem;
+        }
+        .card {
+          padding: 1.2rem 0.7rem 1rem 0.7rem;
+        }
+        .sectors-block {
+          padding: 1.2rem 0.7rem 1rem 0.7rem;
+        }
+      }
+      @media (max-width: 600px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 0.7rem 1rem;
+        }
+        .header-title {
+          margin-left: 0.5rem;
+          font-size: 1.1rem;
+        }
+        .cta-btn {
+          margin-left: 0;
+          margin-top: 0.7rem;
+          width: 100%;
+        }
+      }
+    </style>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        var header = document.querySelector("header");
+        function onScroll() {
+          if (window.scrollY > 10) {
+            header.classList.add("scrolled");
+          } else {
+            header.classList.remove("scrolled");
+          }
+        }
+        window.addEventListener("scroll", onScroll);
+        onScroll();
+      });
+
+      function copyEmail() {
+        const email = "petra@cirkel-consulting.com";
+        navigator.clipboard
+          .writeText(email)
+          .then(function () {
+            // Feedback visuel temporaire
+            const emailElement = document.querySelector(".email-copy");
+            const originalText = emailElement.textContent;
+            emailElement.textContent = "Email copié !";
+            emailElement.style.color = "#4CAF50";
+
+            setTimeout(function () {
+              emailElement.textContent = originalText;
+              emailElement.style.color = "var(--primary)";
+            }, 1500);
+          })
+          .catch(function (err) {
+            console.error("Erreur lors de la copie: ", err);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <header>
+      <div style="display: flex; align-items: center">
+        <img
+          src="cirkel-logo.png"
+          alt="Logo Cirkel Consulting, cercles bleus sur fond transparent"
+          class="logo"
+        />
+      </div>
+    </header>
+    <main>
+      <section class="intro">
+        <div class="intro-content">
+          <h1
+            style="
+              font-size: 2.1rem;
+              font-weight: 700;
+              color: var(--title-color);
+              margin-bottom: 0.5em;
+            "
+          >
+            Conseil & Expertise SAP S/4HANA Finance
+          </h1>
+          <p>
+            <strong>Cirkel Consulting</strong> accompagne les entreprises dans
+            leur transformation digitale et l’optimisation de leurs processus
+            financiers grâce à une expertise reconnue sur
+            <strong>SAP S/4HANA Finance</strong>.<br /><br />
+            Fondée par <strong>Petra Van Herck</strong>, consultante senior avec
+            plus de 18 ans d’expérience, Cirkel Consulting met l’accent sur
+            l’innovation, la performance et l’accompagnement sur-mesure pour
+            chaque client.
+          </p>
+        </div>
+      </section>
+      <section class="cards">
+        <div class="card">
+          <span class="card-icon" aria-hidden="true">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z"
+                fill="#282830"
+              />
+            </svg>
+          </span>
+          <div class="card-title">Expertise SAP S/4HANA Finance</div>
+          <div class="card-desc">
+            Mise en œuvre, migration et optimisation des modules financiers SAP
+            :
+          </div>
+          <ul class="card-list">
+            <li>FI/CO (Finance & Controlling)</li>
+            <li>Gestion des clôtures et reporting</li>
+            <li>Intégration S/4HANA (Greenfield & Brownfield)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="card-icon" aria-hidden="true">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z"
+                fill="#282830"
+              />
+              <path
+                d="M12 6V12L16 14"
+                stroke="#282830"
+                stroke-width="2"
+                fill="none"
+              />
+            </svg>
+          </span>
+          <div class="card-title">Transformation digitale & Processus</div>
+          <div class="card-desc">
+            Accompagnement dans la digitalisation des processus financiers :
+          </div>
+          <ul class="card-list">
+            <li>Optimisation des flux comptables</li>
+            <li>Automatisation & dématérialisation</li>
+            <li>Conduite du changement</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="card-icon" aria-hidden="true">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"
+                fill="#282830"
+              />
+            </svg>
+          </span>
+          <div class="card-title">Conseil & Formation</div>
+          <div class="card-desc">
+            Conseil stratégique et formation des équipes :
+          </div>
+          <ul class="card-list">
+            <li>Audit de processus</li>
+            <li>Formation SAP S/4HANA Finance</li>
+            <li>Support et coaching utilisateurs</li>
+          </ul>
+        </div>
+      </section>
+      <section class="sectors-block">
+        <div class="sectors-header">
+          <span class="sectors-title">Secteurs d’intervention</span>
+        </div>
+        <div class="sectors-desc">Expérience multi-sectorielle :</div>
+        <ul class="sectors-list">
+          <li>Industrie, Services, Assurance, Énergie</li>
+          <li>Projets internationaux</li>
+          <li>PME, ETI, Grands groupes</li>
+        </ul>
+      </section>
+      <section class="contact" id="contact">
+        <h2
+          style="font-size: 1.3rem; color: var(--title-color); font-weight: 700"
+        >
+          Contact
+        </h2>
+        <p>
+          <span
+            class="email-copy"
+            onclick="copyEmail()"
+            style="
+              cursor: pointer;
+              color: var(--primary);
+              text-decoration: none;
+              font-weight: 600;
+              margin: 0 0.7em;
+              transition: color var(--transition);
+            "
+            >petra@cirkel-consulting.com</span
+          >
+          | <a href="tel:+33782246224">+33 (0)7 82 24 62 24</a> |
+          <a
+            href="https://www.linkedin.com/in/petra-van-herck/"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+        </p>
+        <p>Nantes / Saint-Nazaire – France</p>
+      </section>
+    </main>
+    <footer class="footer">
+      © Cirkel Consulting – Petra Van Herck | Conseil SAP S/4HANA Finance | 2024
+    </footer>
+  </body>
+</html>
